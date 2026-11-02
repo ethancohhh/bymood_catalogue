@@ -1025,41 +1025,5 @@ window.CATALOGUE = [
         ]
       }
     ]
-  },
-  {
-    "slug": "bureau",
-    "titre": "Bureau",
-    "accroche": "Un poste de travail intégré, au calme, sans sacrifier une pièce entière.",
-    "couverture": {
-      "id": "01-bureau-en-noyer-integre",
-      "legende": "Bureau en noyer intégré",
-      "ratio": 1.5,
-      "largeurSource": 1200,
-      "src": "images/bureau/01-bureau-en-noyer-integre",
-      "largeurs": [
-        800,
-        1600
-      ]
-    },
-    "variantes": [
-      {
-        "id": "01-bureau-en-noyer-integre",
-        "legende": "Bureau en noyer intégré",
-        "ratio": 1.5,
-        "largeurSource": 1200,
-        "src": "images/bureau/01-bureau-en-noyer-integre",
-        "largeurs": [
-          800,
-          1600
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "home-cinema",
-    "titre": "Home cinéma",
-    "accroche": "Une pièce dédiée à l'image et au son, de l'alcôve intime à la vraie salle de projection.",
-    "couverture": null,
-    "variantes": []
   }
 ];

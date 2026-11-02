@@ -4,7 +4,7 @@ Catalogue d'inspirations hors site, montré en rendez-vous ou envoyé par lien �
 
 ## Ajouter des photos
 
-1. Déposer les photos dans `photos/<catégorie>/` (voir `categories.json` : `cuisine`, `salle-de-bain`, `mur-tv`, `cheminee`, `escalier`, `salon`, `bureau`, `home-cinema`). JPEG, PNG, HEIC ou WebP.
+1. Déposer les photos dans `photos/<catégorie>/` (voir `categories.json` : `cuisine`, `salle-de-bain`, `mur-tv`, `cheminee`, `escalier`, `salon`). JPEG, PNG, HEIC ou WebP.
 2. Nommer chaque fichier `NN-legende.jpg` : le numéro fixe l'ordre, le reste devient la légende (`03-cheminée-en-pierre.jpg` → « Cheminée en pierre »).
 3. Pour choisir l'image du bandeau d'accueil, nommer un fichier `couverture.jpg` (il n'apparaît pas dans les variantes). Sinon, la première photo horizontale sert de bandeau.
 4. Lancer `npm run images` : les images web sont générées dans `images/` et `data.js` est mis à jour. Retirer une photo de `photos/` la retire aussi du catalogue.

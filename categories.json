@@ -28,15 +28,5 @@
     "slug": "salon",
     "titre": "Salon",
     "accroche": "Des pièces de vie recomposées autour des usages : recevoir, se poser, ranger."
-  },
-  {
-    "slug": "bureau",
-    "titre": "Bureau",
-    "accroche": "Un poste de travail intégré, au calme, sans sacrifier une pièce entière."
-  },
-  {
-    "slug": "home-cinema",
-    "titre": "Home cinéma",
-    "accroche": "Une pièce dédiée à l'image et au son, de l'alcôve intime à la vraie salle de projection."
   }
 ]
