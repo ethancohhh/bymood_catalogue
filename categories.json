@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "cuisine",
+    "titre": "Cuisine",
+    "accroche": "Des cuisines en L ouvertes et fonctionnelles, où chaque mètre linéaire travaille."
+  },
+  {
+    "slug": "salle-de-bain",
+    "titre": "Salle de bain",
+    "accroche": "Matières, lumière et rangements pour une pièce d'eau simple à vivre."
+  },
+  {
+    "slug": "mur-tv",
+    "titre": "Mur TV",
+    "accroche": "Un mur qui intègre l'écran, les rangements et la lumière en un seul dessin."
+  },
+  {
+    "slug": "cheminee",
+    "titre": "Cheminée",
+    "accroche": "Un foyer qui structure la pièce, de l'insert discret au mur habillé de pierre."
+  },
+  {
+    "slug": "escalier",
+    "titre": "Escalier",
+    "accroche": "Un escalier pensé comme un objet : structure, matière et rangements intégrés."
+  },
+  {
+    "slug": "salon",
+    "titre": "Salon",
+    "accroche": "Des pièces de vie recomposées autour des usages : recevoir, se poser, ranger."
+  },
+  {
+    "slug": "bureau",
+    "titre": "Bureau",
+    "accroche": "Un poste de travail intégré, au calme, sans sacrifier une pièce entière."
+  },
+  {
+    "slug": "home-cinema",
+    "titre": "Home cinéma",
+    "accroche": "Une pièce dédiée à l'image et au son, de l'alcôve intime à la vraie salle de projection."
+  }
+]

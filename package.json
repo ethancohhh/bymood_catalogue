@@ -1,0 +1,9 @@
+{
+  "name": "bymood-catalogue",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/build.mjs",
+    "dev": "python3 -m http.server 4321"
+  }
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Catalogue — bymood.</title>
+  <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/libre-baskerville-bold-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/merriweather-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <header class="topbar">
+    <a class="topbar__brand" href="#/" aria-label="Catalogue bymood., accueil">
+      <img src="assets/brand/bymood-wordmark-420.webp" alt="bymood." width="420" height="120">
+    </a>
+    <p class="topbar__label">Catalogue d'inspirations</p>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="footer">
+    <span>bymood.</span>
+    <span>Architecture intérieure · Design · Rénovation</span>
+  </footer>
+
+  <dialog class="viewer" aria-label="Visionneuse">
+    <figure class="viewer__figure">
+      <img class="viewer__img" alt="">
+      <figcaption class="viewer__caption"></figcaption>
+    </figure>
+    <button class="viewer__btn viewer__close" type="button" aria-label="Fermer">Fermer</button>
+    <button class="viewer__btn viewer__prev" type="button" aria-label="Variante précédente">←</button>
+    <button class="viewer__btn viewer__next" type="button" aria-label="Variante suivante">→</button>
+  </dialog>
+
+  <script src="data.js?v=3"></script>
+  <script src="app.js?v=3"></script>
+</body>
+</html>

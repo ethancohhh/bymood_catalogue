@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+
+# Originaux (conservés en local, seules les versions web de images/ sont publiées)
+photos/
