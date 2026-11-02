@@ -16,8 +16,6 @@
 /* Tokens repris de website/src/styles.css */
 :root {
   --color-primary: #173B4B;
-  --color-white: #fffcf7;
-  --motion-ease: cubic-bezier(.22, 1, .36, 1);
   --color-paper: #f7f3eb;
   --color-sand: #e9decc;
   --color-sand-light: #f1e9dc;
@@ -81,29 +79,37 @@ p { margin: 0; }
   color: var(--color-taupe);
 }
 
-/* Accueil : axonométrie et bandeaux */
-.intro {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: center;
-  width: min(100% - 2 * var(--gutter), var(--band-width));
-  min-height: clamp(360px, 32vw, 440px);
-  margin: 0 auto clamp(24px, 3vw, 40px);
-}
-.intro__copy { display: grid; gap: 16px; max-width: 400px; }
-.intro h1 { font-size: clamp(40px, 5vw, 64px); }
-.intro p { color: var(--color-muted); }
-.intro__drawing { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-/* Le dessin se cale à droite et son bord gauche se fond dans le papier, derrière le texte. */
-.intro__stage {
-  position: absolute;
+/* Fond : tracés de construction, très discrets, derrière tout le contenu. */
+.trace {
+  position: fixed;
   inset: 0;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 48%);
-  mask-image: linear-gradient(90deg, transparent 8%, #000 48%);
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: var(--color-primary);
+  opacity: .16;
+  pointer-events: none;
 }
-.intro__stage .hero-axo { position: absolute; top: 0; right: 0; height: 100%; width: auto; aspect-ratio: 12 / 5; }
+.trace path { stroke-width: .7; }
+.trace .trace__dash { stroke-dasharray: 4 6; opacity: .7; }
+@media (prefers-reduced-motion: no-preference) {
+  .trace path:not(.trace__dash) { stroke-dasharray: 1; animation: trace 2.8s cubic-bezier(.65, 0, .35, 1) var(--d, 0s) both; }
+  .trace .trace__dash { animation: trace-fade 2.4s ease var(--d, 0s) both; }
+}
+@keyframes trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes trace-fade { from { opacity: 0; } }
+
+/* Accueil : bandeaux */
+.intro {
+  width: min(100% - 2 * var(--gutter), var(--band-width));
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 96px) 0 clamp(28px, 4vw, 48px);
+  display: grid;
+  gap: 16px;
+}
+.intro__copy { display: grid; gap: 16px; }
+.intro h1 { font-size: clamp(40px, 5vw, 64px); }
+.intro p { color: var(--color-muted); max-width: 52ch; }
 
 .bands {
   list-style: none;
@@ -361,18 +367,7 @@ p { margin: 0; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 @keyframes fade { from { opacity: 0; } }
 
-/* Tablette et mobile : le dessin passe sous le texte, recadré sur la maison (61 à 87 % du dessin).
-   --k : largeur du dessin rapportée à celle de la zone. */
-@media (max-width: 1023px) {
-  .intro { display: block; min-height: 0; padding-top: 24px; }
-  .intro__copy { max-width: 520px; }
-  .intro__drawing { --k: 2; position: relative; inset: auto; z-index: auto; margin-top: 8px; }
-  .intro__stage { position: relative; aspect-ratio: calc(2.4 / var(--k)); -webkit-mask-image: none; mask-image: none; }
-  .intro__stage .hero-axo { left: calc(50% - var(--k) * 74%); right: auto; height: auto; width: calc(var(--k) * 100%); }
-}
-
 @media (max-width: 767px) {
-  .intro__drawing { --k: 3.2; }
   .topbar { padding: 20px 0 16px; }
   .topbar__brand img { width: 104px; }
   .category__head { grid-template-columns: 1fr; }
@@ -388,84 +383,3 @@ p { margin: 0; }
 }
 
 body:has(.viewer[open]) { overflow: hidden; }
-
-/* Axonométrie — règles reprises de website/src/hero-axo.css */
-/* Axonométrie éclatée du hero : dessin au trait bleu nuit sur papier. */
-.hero-axo { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-primary); }
-/* Trait de la maison à l'échelle du dessin (0,8 à 1,3 selon l'écran) : le tracé progressif
-   par stroke-dashoffset est faussé par vector-effect: non-scaling-stroke dans Chromium. */
-.hero-axo :is(path, polygon) { stroke: currentColor; stroke-width: .75; stroke-linejoin: round; }
-.axo-slab-top { fill: var(--color-white); fill-rule: evenodd; }
-.axo-slab-side { fill: #eee8dd; }
-.axo-slab-hole { fill: #e2dacb; }
-.axo-face-top { fill: var(--color-white); }
-.axo-face-x { fill: #f1ece3; }
-.axo-face-y { fill: #f8f4ed; }
-/* Murs coupés : poché plein, comme une coupe horizontale. */
-.axo-wall .axo-face-top { fill: var(--color-primary); }
-.axo-parapet .axo-face-top { fill: var(--color-sand); }
-.axo-stair :is(.axo-face-x, .axo-face-y) { fill: var(--color-white); }
-/* Mobilier : trait plus fin ; textiles légèrement teintés. */
-.hero-axo :is(.axo-furniture, .axo-soft, .axo-tub, .axo-plant, .axo-volume) :is(path, polygon) { stroke-width: .6; }
-.axo-soft :is(.axo-face-top, .axo-face-x, .axo-face-y) { fill: var(--color-sand-light); }
-.axo-soft .axo-face-x { fill: var(--color-sand); }
-.axo-tub-basin { fill: #e6ece9; }
-.axo-glass polygon { fill: #dfe7e6; fill-opacity: .55; stroke-width: .5; }
-.axo-leaf path { fill: var(--color-white); }
-.hero-axo .axo-leaf-rib { fill: none; stroke-width: .4; opacity: .6; }
-/* Revêtements : trame très légère. */
-.axo-surface polygon { fill: none; stroke: none; }
-.hero-axo .axo-surface path { fill: none; stroke-width: .4; opacity: .28; }
-.axo-rug polygon { fill: var(--color-sand); fill-opacity: .55; stroke: currentColor; stroke-width: .5; }
-.axo-guides { fill: none; stroke-width: .7; stroke-dasharray: 5 5; opacity: calc(.55 - var(--close, 0) * .9); }
-/* Position des niveaux : vue éclatée, décalée par la parallaxe et le resserrement au scroll. */
-.axo-level { transform: translateY(var(--lift-open)); }
-.axo-level-shift { transform: translate(calc(var(--mx, 0) * var(--depth) * 5px), calc(var(--my, 0) * var(--depth) * 3px + var(--close, 0) * var(--gap, 0px))); transition: transform 500ms var(--motion-ease); }
-.axo-city-shift { transform: translate(calc(var(--mx, 0) * -4px), calc(var(--my, 0) * -2px)); transition: transform 500ms var(--motion-ease); }
-/* Quartier : même trait, plus discret, fondu vers les bords. */
-.axo-city { opacity: .62; }
-.axo-city :is(path, polygon, ellipse) { vector-effect: non-scaling-stroke; stroke: currentColor; stroke-width: .6; stroke-linejoin: round; }
-.axo-block polygon { fill: var(--color-paper); }
-.hero-axo .axo-block path { fill: none; opacity: .45; }
-.axo-lawn polygon { fill: #ece8da; stroke: none; }
-.axo-paving polygon { fill: var(--color-paper); }
-.hero-axo .axo-paving path { fill: none; opacity: .3; }
-.hero-axo .axo-lane path { fill: none; stroke-dasharray: 10 9; opacity: .5; }
-.hero-axo .axo-crosswalk .axo-surface-fill { fill: var(--color-white); stroke-width: .5; opacity: 1; }
-.axo-roof { fill: #f3eee5; }
-.axo-windows { fill: #e7e5dd; stroke-width: .5; }
-.axo-tree-shadow { fill: var(--color-sand); stroke: none; opacity: .45; }
-.axo-trunk { fill: var(--color-white); stroke-width: .5; }
-.axo-crown { fill: var(--color-white); stroke-width: .6; }
-.hero-axo :is(.axo-branches, .axo-tufts) { fill: none; stroke-width: .45; opacity: .7; }
-.axo-car :is(.axo-face-top, .axo-face-x, .axo-face-y) { fill: var(--color-white); }
-.axo-hedge :is(.axo-face-top, .axo-face-x, .axo-face-y) { fill: #e9e7da; }
-
-
-/* Apparition : quartier en fondu, tracé de la structure sur des niveaux rapprochés,
-   ouverture de la vue éclatée, puis aménagement et rappels pointillés.
-   Sans JavaScript ou en mouvement réduit, le dessin final s'affiche directement. */
-@media (prefers-reduced-motion: no-preference) {
-  .axo-city { animation: axo-appear 900ms ease both; }
-  .axo-level { animation: axo-explode 1300ms var(--motion-ease) 1250ms both; }
-  .axo-house :is(.axo-slab, .axo-wall, .axo-parapet, .axo-stair) :is(polygon, path) { animation: axo-trace 1400ms var(--motion-ease) 150ms both; }
-  .axo-house :is(.axo-surfaces, .axo-furniture, .axo-soft, .axo-tub, .axo-plant, .axo-glass, .axo-volume) { animation: axo-appear 800ms ease 1900ms both; }
-  .axo-guides { animation: axo-appear 700ms ease 2300ms both; }
-  .hero-axo.is-drawn :not(.axo-canopy) { animation: none !important; }
-}
-/* Arbres : un seul balancement de 5 s à l'arrivée, puis repos (WCAG 2.2.2), sur grand écran seulement (le quartier est masqué, donc coûteux à repeindre). */
-@media (prefers-reduced-motion: no-preference) and (min-width: 1024px) and (hover: hover) {
-  .axo-canopy { animation: axo-sway 5s ease-in-out both; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .axo-level-shift, .axo-city-shift { transform: none; transition: none; }
-  .axo-guides { opacity: .55; }
-}
-@keyframes axo-appear { from { opacity: 0; } }
-@keyframes axo-explode { from { transform: translateY(var(--lift-closed)); } to { transform: translateY(var(--lift-open)); } }
-@keyframes axo-trace {
-  from { stroke-dasharray: 1; stroke-dashoffset: 1; fill-opacity: 0; }
-  65% { fill-opacity: 0; }
-  to { stroke-dasharray: 1; stroke-dashoffset: 0; fill-opacity: 1; }
-}
-@keyframes axo-sway { 25% { transform: rotate(-.7deg); } 75% { transform: rotate(.7deg); } }

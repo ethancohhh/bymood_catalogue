@@ -43,43 +43,8 @@
           <h1>Inspirations</h1>
           <p>Choisissez un univers pour découvrir ses différentes variantes de style.</p>
         </div>
-        <div class="intro__drawing"><div class="intro__stage"></div></div>
       </section>
       <ul class="bands page-enter">${bands}</ul>`;
-    mountDrawing(app.querySelector('.intro'));
-  }
-
-  // Axonométrie du site : tracée une seule fois par visite, affichée finie aux retours suivants.
-  let drawing = null;
-  function mountDrawing(intro) {
-    if (!drawing) {
-      drawing = document.getElementById('axo-template').content.firstElementChild.cloneNode(true);
-      drawing.addEventListener('animationend', (event) => {
-        if (event.target.closest('.axo-guides')) drawing.classList.add('is-drawn');
-      });
-    }
-    intro.querySelector('.intro__stage').append(drawing);
-    followPointer(intro, drawing);
-  }
-
-  // Légère parallaxe des niveaux selon la souris, comme sur bymood.fr (souris et grand écran uniquement).
-  function followPointer(intro, svg) {
-    const active = matchMedia('(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (min-width: 1024px)');
-    let frame = 0;
-    const set = (mx, my) => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        svg.style.setProperty('--mx', mx.toFixed(3));
-        svg.style.setProperty('--my', my.toFixed(3));
-      });
-    };
-    intro.addEventListener('pointermove', (event) => {
-      if (!active.matches) return;
-      const box = intro.getBoundingClientRect();
-      set(Math.max(-1, Math.min(1, ((event.clientX - box.left) / box.width - 0.5) * 2)),
-        Math.max(-1, Math.min(1, ((event.clientY - box.top) / box.height - 0.5) * 2)));
-    });
-    intro.addEventListener('pointerleave', () => set(0, 0));
   }
 
   function renderCategory(cat) {
