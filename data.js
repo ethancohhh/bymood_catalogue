@@ -974,56 +974,5 @@ window.CATALOGUE = [
         ]
       }
     ]
-  },
-  {
-    "slug": "salon",
-    "titre": "Salon",
-    "accroche": "Des pièces de vie recomposées autour des usages : recevoir, se poser, ranger.",
-    "couverture": {
-      "id": "01-salon-bleu-nuit",
-      "legende": "Salon bleu nuit",
-      "ratio": 1.5,
-      "largeurSource": 1200,
-      "src": "images/salon/01-salon-bleu-nuit",
-      "largeurs": [
-        800,
-        1600
-      ]
-    },
-    "variantes": [
-      {
-        "id": "01-salon-bleu-nuit",
-        "legende": "Salon bleu nuit",
-        "ratio": 1.5,
-        "largeurSource": 1200,
-        "src": "images/salon/01-salon-bleu-nuit",
-        "largeurs": [
-          800,
-          1600
-        ]
-      },
-      {
-        "id": "02-cheminee-blanche",
-        "legende": "Cheminée blanche",
-        "ratio": 1.5,
-        "largeurSource": 1200,
-        "src": "images/salon/02-cheminee-blanche",
-        "largeurs": [
-          800,
-          1600
-        ]
-      },
-      {
-        "id": "03-sejour-et-escalier-en-verre",
-        "legende": "Séjour et escalier en verre",
-        "ratio": 1.5,
-        "largeurSource": 1200,
-        "src": "images/salon/03-sejour-et-escalier-en-verre",
-        "largeurs": [
-          800,
-          1600
-        ]
-      }
-    ]
   }
 ];
